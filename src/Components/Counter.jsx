@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { counterSliceActions } from "../store/index";
 function Counter() {
   const counter = useSelector((state) => {
     return state.counter;
@@ -11,16 +12,16 @@ function Counter() {
 
   //funcs
   let increase = () => {
-    dispatch({ type: "Increase" });
+    dispatch(counterSliceActions.increase());
   };
   let decrease = () => {
-    dispatch({ type: "Decrease" });
+    dispatch(counterSliceActions.decrease());
   };
   let aa = () => {
-    dispatch({ type: "hi", amount: 5 });
+    dispatch(counterSliceActions.aa(6));
   };
   let tog = () => {
-    dispatch({ type: "togg" });
+    dispatch(counterSliceActions.tog());
   };
   return (
     <section>

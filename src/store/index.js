@@ -1,54 +1,27 @@
-// import { createStoreHook } from "react-redux";
+import { createSlice, configureStore } from "@reduxjs/toolkit";
 
-// const counterReducer = (state = { counter: 0 }, action) => {
-//   return state;
-// };
-// const store = createStoreHook(counterReducer);
-// export default store;
-import { createStore } from "redux";
-let initial = { counter: 0, isshow: true };
-const counterReducer = (state = initial, action) => {
-  if (action.type === "Increase") {
-    return {
-      ...initial,
-      counter: state.counter + 1,
-    };
-  }
-  if (action.type === "Decrease") {
-    return {
-      ...initial,
-      counter: state.counter - 1,
-    };
-  }
-  if (action.type === "hi") {
-    return {
-      ...initial,
-      counter: state.counter + action.amount,
-    };
-  }
-  if (action.type === "togg") {
-    return {
-      ...initial,
-      isshow: !state.isshow,
-    };
-  }
-  return state;
-};
-const store = createStore(counterReducer);
+let initialCounterState = { counter: 0, isshow: true }; //state a ny nk conponents c twr
+const counterSlice = createSlice({
+  name: "counter",
+  initialState: initialCounterState,
+  reducers: {
+    increase(state) {
+      state.counter++;
+    },
+    decrease(state) {
+      state.counter--;
+    },
+    aa(state, actions) {
+      state.counter = state.counter + actions.payload;
+    },
+    tog(state) {
+      state.isshow = !state.isshow;
+    },
+  },
+});
 
+const store = configureStore({
+  reducer: counterSlice.reducer,
+});
 export default store;
-
-// import { createStore } from "redux";
-
-// const counterReducer = (state = { counter: 0 }, action) => {
-//   switch (action.type) {
-//     case "INCREMENT":
-//       return { counter: state.counter + 1 };
-//     default:
-//       return state;
-//   }
-// };
-
-// const store = createStore(counterReducer);
-
-// export default store;
+export let counterSliceActions = counterSlice.actions;
