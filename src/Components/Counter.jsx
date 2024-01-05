@@ -3,11 +3,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { counterSliceActions } from "../store/index";
 function Counter() {
   const counter = useSelector((state) => {
-    return state.counter;
+    return state.counter.counter; //export mhr obj htl mhr counter so dk key htl ka ny pyn khw
   });
   const dispatch = useDispatch();
   const isshow = useSelector((state) => {
-    return state.isshow;
+    return state.counter.isshow; //export mhr obj htl mhr counter so dk key htl ka ny pyn khw
   });
 
   //funcs
